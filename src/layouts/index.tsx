@@ -1,16 +1,19 @@
 import React from 'react'
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config'
+import { useHistory } from 'react-router-dom'
 
-const Layout: React.FC<RouteConfigComponentProps> = React.memo(function Layout(props) {
+const Layout: React.FC<RouteConfigComponentProps> = React.memo((props) => {
   const { route } = props
-  console.log('hybird layout')
+  const history = useHistory()
+  const token = localStorage.getItem('token')
+  const whiteList = ['/user/login', '/user/register']
+  const { pathname } = history?.location
+
+  if (!token && whiteList.indexOf(pathname) === -1) {
+    history.replace('/user/login')
+  }
+
   return renderRoutes(route?.routes)
-})
-
-export const H5Layout: React.FC<RouteConfigComponentProps> = React.memo(function H5Layout(props) {
-  const { route } = props
-
-  return <>{renderRoutes(route?.routes)}</>
 })
 
 export default Layout

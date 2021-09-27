@@ -10,9 +10,8 @@ function Login() {
   const history = useHistory()
   const [btnLoading, setBtnLoading] = useState(false)
 
-  const handleClick = () => {
-    history.push('/user/register')
-  }
+  const handleClick = () => history.push('/user/register')
+
   const onFinish = async (values: loginParams) => {
     try {
       setBtnLoading(true)

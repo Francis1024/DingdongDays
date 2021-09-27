@@ -48,14 +48,20 @@ function Login() {
           label="用户名"
           rules={[{ required: true, message: '姓名不能为空' }]}
         >
-          <Input clearable onChange={console.log} placeholder="请输入姓名" />
+          <Input autoComplete="no" clearable onChange={console.log} placeholder="请输入姓名" />
         </Form.Item>
         <Form.Item
           name="newpassword"
           label="密码"
           rules={[{ required: true, message: '密码不能为空' }]}
         >
-          <Input clearable type="password" onChange={console.log} placeholder="请输入密码" />
+          <Input
+            autoComplete="no"
+            clearable
+            type="password"
+            onChange={console.log}
+            placeholder="请输入密码"
+          />
         </Form.Item>
         <Form.Item
           name="password"
@@ -72,7 +78,13 @@ function Login() {
             })
           ]}
         >
-          <Input clearable type="password" onChange={console.log} placeholder="请输入密码" />
+          <Input
+            clearable
+            autoComplete="no"
+            type="password"
+            onChange={console.log}
+            placeholder="请输入密码"
+          />
         </Form.Item>
       </Form>
       <div className={styles.footer}>

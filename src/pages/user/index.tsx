@@ -1,11 +1,8 @@
-import React from 'react';
+import React from 'react'
+import { RouteConfigComponentProps, renderRoutes } from 'react-router-config'
 
-function User() {
-  return (
-    <div>
-      User
-    </div>
-  );
+const User: React.FC<RouteConfigComponentProps> = ({ route }) => {
+  return <>{renderRoutes(route?.routes)}</>
 }
 
-export default User;
+export default User
