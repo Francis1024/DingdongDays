@@ -1,0 +1,76 @@
+{
+  "name": "fe-project-base",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:dev": "tsc && vite build -m qa",
+    "serve": "vite preview"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --cache --fix",
+      "git add"
+    ],
+    "src/**/*.{js,jsx}": [
+      "eslint --cache --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@loadable/component": "^5.14.1",
+    "@vitejs/plugin-legacy": "^1.3.2",
+    "antd-mobile": "^5.0.0-beta.6",
+    "antd-mobile-icons": "^0.2.2",
+    "autoprefixer": "^10.3.6",
+    "axios": "^0.21.4",
+    "classnames": "^2.2.6",
+    "indexof": "^0.0.1",
+    "js-cookie": "^2.2.1",
+    "lib-flexible": "^0.3.2",
+    "mobx": "^6.1.7",
+    "mobx-persist": "^0.4.1",
+    "mobx-react": "^7.1.0",
+    "postcss-px-to-viewport": "^1.1.1",
+    "postcss-pxtorem": "^6.0.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-router": "^5.2.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.1.14",
+    "@types/ejs": "^3.0.6",
+    "@types/html-minifier-terser": "^5.1.1",
+    "@types/loadable__component": "^5.13.3",
+    "@types/node": "^14.14.35",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-config": "^5.0.2",
+    "@types/react-router-dom": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "babel-eslint": "^10.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.22.0",
+    "eslint-config-alloy": "^3.10.0",
+    "eslint-plugin-react": "^7.22.0",
+    "husky": "^4.3.8",
+    "less": "^4.1.1",
+    "lint-staged": "^10.5.4",
+    "postcss": "^8.2.8",
+    "postcss-focus": "^5.0.1",
+    "rollup-plugin-visualizer": "^5.3.6",
+    "typescript": "^4.2.3",
+    "vite": "^2.1.5",
+    "vite-plugin-html": "^2.0.3",
+    "vite-plugin-imp": "^2.0.7"
+  }
+}
