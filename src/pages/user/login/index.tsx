@@ -17,8 +17,9 @@ function Login() {
       setBtnLoading(true)
       const result = await login(values)
       localStorage.setItem('token', result?.data?.token)
-      history.push('/')
-    } finally {
+      setBtnLoading(false)
+      history.replace('/')
+    } catch (error) {
       setBtnLoading(false)
     }
   }
