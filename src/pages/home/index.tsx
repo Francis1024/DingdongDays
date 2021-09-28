@@ -4,7 +4,9 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.less'
 import { Button, Space } from 'antd-mobile'
-
+import Block from '@/components/Block'
+import Header from './components/header'
+import Card from './components/card'
 interface IHomeProps {
   title: string
   backurl?: string
@@ -18,21 +20,10 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
   const commonStore = useStores('commonStore')
 
   return (
-    <Space wrap>
-      <Button>Default</Button>
-      <Button color="primary">Primary</Button>
-      <Button color="success">Success</Button>
-      <Button
-        color="danger"
-        onClick={() => {
-          localStorage.clear()
-          history.push('/user/login')
-        }}
-      >
-        退出登录
-      </Button>
-      <Button color="warning">Warning</Button>
-    </Space>
+    <Block>
+      <Header />
+      <Card />
+    </Block>
   )
 })
 

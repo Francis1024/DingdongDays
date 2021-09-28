@@ -1,11 +1,17 @@
-import React from 'react';
+import React from 'react'
+import { AddCircleOutline } from 'antd-mobile-icons'
+import styles from './index.module.less'
 
-function Header() {
+const Header = () => {
   return (
-    <div>
-      Header
+    <div className={styles.box}>
+      <div />
+      <div />
+      <div>
+        <AddCircleOutline className={styles.icon} />
+      </div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header
