@@ -22,7 +22,7 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
   return (
     <Block>
       <Header />
-      <Card />
+      {/* <Card /> */}
     </Block>
   )
 })
