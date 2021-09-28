@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import type { registerParams } from './types'
 import { register } from './service'
 import type { FormInstance } from 'rc-field-form'
+import { cache } from 'ejs'
 
 function Login() {
   let history = useHistory()
@@ -24,8 +25,9 @@ function Login() {
         icon: 'success',
         content: '注册成功，请登录！～'
       })
+      setBtnLoading(false)
       history.push('/user/login')
-    } finally {
+    } catch (error) {
       setBtnLoading(false)
     }
   }

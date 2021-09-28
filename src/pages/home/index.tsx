@@ -1,7 +1,7 @@
 import { useStores } from '@/hooks'
 import { observer } from 'mobx-react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import styles from './index.module.less'
 import { Button, Space } from 'antd-mobile'
 
@@ -11,6 +11,7 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps | any> = observer((props) => {
+  const history = useHistory()
   const { backurl, title } = props
 
   const counterStore = useStores('counterStore')
@@ -18,16 +19,18 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
 
   return (
     <Space wrap>
-      <Button
-        onClick={() => {
-          alert('hello.')
-        }}
-      >
-        Default
-      </Button>
+      <Button>Default</Button>
       <Button color="primary">Primary</Button>
       <Button color="success">Success</Button>
-      <Button color="danger">Danger</Button>
+      <Button
+        color="danger"
+        onClick={() => {
+          localStorage.clear()
+          history.push('/user/login')
+        }}
+      >
+        退出登录
+      </Button>
       <Button color="warning">Warning</Button>
     </Space>
   )

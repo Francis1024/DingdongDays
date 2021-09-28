@@ -20,19 +20,19 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const status = response.status
-
     const msg = response?.data?.msg ?? '数据请求错误'
-
-    if (response.data.code !== 0) {
-      Toast.show({
-        content: msg
-      })
-    }
     if (response?.data?.code === 401) {
       localStorage.clear()
     }
-    return response.data
+    if (response.data.code !== 0) {
+      Toast.show({
+        content: msg,
+        icon: 'fail'
+      })
+      return Promise.reject(new Error(msg || 'Error'))
+    } else {
+      return response.data
+    }
   },
   (error) => {
     // 错误抛到业务代码
