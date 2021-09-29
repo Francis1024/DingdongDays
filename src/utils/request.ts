@@ -8,7 +8,13 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(
-  (config: AxiosRequestConfig) => config,
+  (config: AxiosRequestConfig) => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers['authorization'] = `Bearer ${token}`
+    }
+    return config
+  },
   (error) => {
     // 错误抛到业务代码
     error.data = {}
@@ -20,18 +26,19 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const msg = response?.data?.msg ?? '数据请求错误'
-    if (response?.data?.code === 401) {
-      localStorage.clear()
-    }
+    const res = response?.data
     if (response.data.code !== 0) {
       Toast.show({
-        content: msg,
+        content: res?.msg ?? '数据请求错误',
         icon: 'fail'
       })
-      return Promise.reject(new Error(msg || 'Error'))
+      if (res?.code === 401) {
+        localStorage.clear()
+        location.replace('/user/login')
+      }
+      return Promise.reject(new Error(res?.msg ?? '错误'))
     } else {
-      return response.data
+      return res
     }
   },
   (error) => {

@@ -4,16 +4,18 @@ import classNames from 'classnames'
 import { Ellipsis } from 'antd-mobile'
 
 interface CardProps {
-  title: string
-  time: string
-  status: number // 1:倒计日，2：累计日
-  text: string
+  data: {
+    title: string
+    time: string
+    status: number // 1:倒计日，2：累计日
+    text: string
+  }
 }
-const Card: React.FC<CardProps> = ({ title, time, status, text }) => {
+const Card: React.FC<CardProps> = ({ data: { title, time, status, text } }) => {
   return (
     <div className={classNames(styles['list-box'])}>
       <div className={classNames(styles.title)}>
-        <Ellipsis direction="end" content={title} />
+        <Ellipsis direction="end" rows={2} content={title} />
       </div>
       <div className={classNames(styles.time)}>
         {status === 1 ? '目标日' : '起始日'}:{time}
