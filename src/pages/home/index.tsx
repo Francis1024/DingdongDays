@@ -29,7 +29,8 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
       page = page + 1
       const result = await getDayList({ page })
       setDayList((dayList) => [...dayList, ...result?.data])
-      setHasMore(result?.data.length !== 0)
+      console.log('result?.data.length >= 0')
+      setHasMore(result?.data.length === 10)
     } catch (error) {}
   }, [])
 
@@ -38,7 +39,7 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
       <div>
         {hasMore ? (
           <>
-            <span>Loading</span>
+            <span>加载中</span>
             <Loading />
           </>
         ) : (
