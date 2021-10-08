@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({ data: { title, time, status, text } }) => {
   return (
     <div className={classNames(styles['list-box'])}>
       <div className={classNames(styles.title)}>
-        <Ellipsis direction="end" rows={2} content={title} />
+        <Ellipsis direction="end" content={title} />
       </div>
       <div className={classNames(styles.time)}>
         {status === 1 ? '目标日' : '起始日'}:{time}

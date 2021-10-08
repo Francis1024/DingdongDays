@@ -27,6 +27,20 @@ const routesConfig: RouteConfig[] = [
         ]
       },
       {
+        path: '/days',
+        component: loadable(() => import('@/pages/days')),
+        routes: [
+          {
+            path: '/days/edit',
+            component: loadable(() => import('@/pages/days/edit'))
+          },
+          {
+            path: '/days/details',
+            component: loadable(() => import('@/pages/days/details'))
+          }
+        ]
+      },
+      {
         path: '/my',
         component: loadable(() => import('@/pages/my'))
       }
