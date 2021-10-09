@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom'
 import type { registerParams } from './types'
 import { register } from './service'
 import type { FormInstance } from 'rc-field-form'
-import { cache } from 'ejs'
 
 function Login() {
   let history = useHistory()
