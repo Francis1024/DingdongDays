@@ -38,6 +38,7 @@
     "mobx-react": "^7.1.0",
     "postcss-px-to-viewport": "^1.1.1",
     "postcss-pxtorem": "^6.0.0",
+    "query-string": "^7.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router": "^5.2.0",

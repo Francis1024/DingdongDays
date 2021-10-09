@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import React, { useEffect, useState, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.less'
-import { InfiniteScroll, Loading } from 'antd-mobile'
+import { InfiniteScroll, Loading, SwipeAction } from 'antd-mobile'
 import Block from '@/components/Block'
 import Header from './components/header'
 import Card from './components/card'
@@ -51,7 +51,28 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
   return (
     <Block>
       <Header />
-      {dayList && dayList.length !== 0 && dayList.map((e) => <Card data={e} key={e?._id} />)}
+      {dayList &&
+        dayList.length !== 0 &&
+        dayList.map((e) => (
+          <SwipeAction
+            key={e?._id}
+            rightActions={[
+              {
+                key: 'primary',
+                text: '编辑',
+                color: 'primary',
+                onClick: () => history.push(`/days/edit?id=${e?._id}`)
+              },
+              {
+                key: 'delete',
+                text: '删除',
+                color: 'danger'
+              }
+            ]}
+          >
+            <Card data={e} />
+          </SwipeAction>
+        ))}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore}>
         <InfiniteScrollContent hasMore={hasMore} />
       </InfiniteScroll>
