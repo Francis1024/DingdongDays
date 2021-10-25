@@ -9,7 +9,7 @@ import Header from './components/header'
 import Card from './components/card'
 import { getDayList } from './service'
 import { getDayListItem } from './types'
-
+import './index.less'
 interface IHomeProps {
   title: string
   backurl?: string
