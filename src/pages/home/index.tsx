@@ -3,11 +3,11 @@ import { observer } from 'mobx-react'
 import React, { useEffect, useState, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.less'
-import { InfiniteScroll, Loading, SwipeAction } from 'antd-mobile'
+import { InfiniteScroll, Loading, SwipeAction, Dialog, Toast } from 'antd-mobile'
 import Block from '@/components/Block'
 import Header from './components/header'
 import Card from './components/card'
-import { getDayList } from './service'
+import { getDayList, deteleDay } from './service'
 import { getDayListItem } from './types'
 import './index.less'
 interface IHomeProps {
@@ -24,12 +24,19 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
   const counterStore = useStores('counterStore')
   const commonStore = useStores('commonStore')
   let page = 0
-  const loadMore = useCallback(async () => {
+  const loadMore = useCallback(async (p = false) => {
     try {
       page = page + 1
-      const result = await getDayList({ page })
-      setDayList((dayList) => [...dayList, ...result?.data])
-      setHasMore(result?.data.length === 10)
+      if (p) {
+        page = 1
+        const result = await getDayList({ page })
+        setDayList(result?.data)
+        setHasMore(result?.data.length === 10)
+      } else {
+        const result = await getDayList({ page })
+        setDayList((dayList) => [...dayList, ...result?.data])
+        setHasMore(result?.data.length === 10)
+      }
     } catch (error) {}
   }, [])
 
@@ -46,6 +53,21 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
         )}
       </div>
     )
+  }
+
+  const handleDel = async (id: string) => {
+    try {
+      const result = await Dialog.confirm({
+        title: '提示',
+        content: '确定删除吗?'
+      })
+      if (result) {
+        await deteleDay({ id })
+        await loadMore(true)
+      }
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   return (
@@ -66,7 +88,8 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
               {
                 key: 'delete',
                 text: '删除',
-                color: 'danger'
+                color: 'danger',
+                onClick: () => handleDel(e?._id)
               }
             ]}
           >
