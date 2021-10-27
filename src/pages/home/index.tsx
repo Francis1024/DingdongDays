@@ -27,6 +27,10 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
   const loadMore = useCallback(async (p = false) => {
     try {
       page = page + 1
+      Toast.show({
+        icon: 'loading',
+        content: '加载中…',
+      })
       if (p) {
         page = 1
         const result = await getDayList({ page })
@@ -37,7 +41,10 @@ const Home: React.FC<IHomeProps | any> = observer((props) => {
         setDayList((dayList) => [...dayList, ...result?.data])
         setHasMore(result?.data.length === 10)
       }
-    } catch (error) {}
+      Toast.clear()
+    } catch (error) {
+      Toast.clear()
+    }
   }, [])
 
   const InfiniteScrollContent = ({ hasMore }: { hasMore?: boolean }) => {

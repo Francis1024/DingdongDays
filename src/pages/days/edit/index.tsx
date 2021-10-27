@@ -58,7 +58,7 @@ const Edit = () => {
         time: new Date(result?.data?.time),
         status: [result?.data?.status]
       })
-    } catch (error) {}
+    } catch (error) { }
   }
 
   useEffect(() => {
@@ -107,6 +107,7 @@ const Edit = () => {
         >
           <DatePicker
             visible={pickerVisible}
+            defaultValue={new Date()}
             onClose={() => {
               setPickerVisible(false)
             }}
