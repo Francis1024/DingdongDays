@@ -12,7 +12,9 @@ Based on Vite + Typescript + React + Ant Design Mobile V5 Ding Dong countdown Mo
 
 
 <div align="center">
+
 English | [简体中文](./README.zh-CN.md)
+
 </div>
 
 # Screenshots
